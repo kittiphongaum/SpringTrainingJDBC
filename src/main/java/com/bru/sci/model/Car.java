@@ -1,72 +1,57 @@
 package com.bru.sci.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
  
 @Entity
-@Table(name="cars")
+@Table(name="Role")
 public class Car {
-	 @Id
-	    @GeneratedValue
-	    private long id;  
-	    private String mid;	    
-	    private String name;	    
-	    private String address;
-	     
-	    @OneToMany(cascade=CascadeType.ALL)
-	    @JoinTable(name="role",
-	    joinColumns={@JoinColumn(name="car_id", referencedColumnName="id")},
-	    inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id")})
-	    private List<User> userList;
+	 
+	
+	
+	   private Long id;
+	    private String name;
+	    private Set<User> users;
 
-		public long getId() {
-			return id;
-		}
+	    @Id
+	    @GeneratedValue(strategy = GenerationType.AUTO)
+	    public Long getId() {
+	        return id;
+	    }
 
-		public void setId(long id) {
-			this.id = id;
-		}
+	    public void setId(Long id) {
+	        this.id = id;
+	    }
 
-		public String getMid() {
-			return mid;
-		}
+	    public String getName() {
+	        return name;
+	    }
 
-		public void setMid(String mid) {
-			this.mid = mid;
-		}
+	    public void setName(String name) {
+	        this.name = name;
+	    }
 
-		public String getName() {
-			return name;
-		}
+	    @ManyToMany(mappedBy = "roles")
+	    public Set<User> getUsers() {
+	        return users;
+	    }
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	    public void setUsers(Set<User> users) {
+	        this.users = users;
+	    }
 
-		public String getAddress() {
-			return address;
-		}
-
-		public void setAddress(String address) {
-			this.address = address;
-		}
-
-		public List<User> getUserList() {
-			return userList;
-		}
-
-		public void setUserList(List<User> userList) {
-			this.userList = userList;
-		}  	
-	     
+		
 }
 	
 	 

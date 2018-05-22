@@ -1,16 +1,15 @@
 package com.bru.sci.ado;
 
-import java.util.Collection;
 
-import antlr.collections.List;
+import java.util.List;
 
-
-
+import com.bru.sci.model.User;
 
 
-public class CarDAO {
+public interface CarDAO {
  
-	public List<>
-	
+	public List<User> findAll() ;
+	public User find(int id);
+
 
 }
